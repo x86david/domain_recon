@@ -1,5 +1,5 @@
 
-🔎 Automatic Domain Infrastructure Recon – `recon.sh`  
+#🔎 Automatic Domain Infrastructure Recon – `recon.sh`  
 ### DNS Footprinting • Subdomain Enumeration • WHOIS/RDAP • ASN Mapping
 
 This repository contains a Bash script designed to perform a **full infrastructure reconnaissance** of any domain.  
