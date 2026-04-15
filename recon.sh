@@ -3,7 +3,7 @@
 # ============================================
 #  Automatic Domain Infrastructure Recon Tool
 #  DNS + WHOIS + ASN + MX/NS + Auto‑Installation
-#  Author: Flex (David Pérez)
+#  Author: David Pérez
 #  Usage: ./infra_recon.sh domain.com
 # ============================================
 
