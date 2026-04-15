@@ -1,133 +1,156 @@
 
+🔎 Automatic Domain Infrastructure Recon – `recon.sh`  
+### DNS Footprinting • Subdomain Enumeration • WHOIS/RDAP • ASN Mapping
 
-# **🔎 Infraestructura Automática – Footprinting DNS & Recon-ng**
+This repository contains a Bash script designed to perform a **full infrastructure reconnaissance** of any domain.  
+It automates the essential phases of a real‑world footprinting workflow:
 
-Este script permite realizar un **análisis completo de infraestructura** para cualquier dominio, automatizando las fases típicas de footprinting:
+- **Phase 1:** WHOIS / RDAP lookup  
+- **Phase 2:** Subdomain enumeration (OSINT passive + brute force)  
+- **Phase 3:** IP resolution, WHOIS by IP, ASN and network range discovery  
+- **Phase 4:** MX and NS extraction  
 
-- WHOIS  
-- Enumeración DNS  
-- Descubrimiento de hosts  
-- Resolución de IPs  
-- Rangos ASN  
-- Servidores MX / NS  
-- Informe final listo para entregar  
-
-Ideal para prácticas de ciberseguridad, OSINT, pentesting o auditorías de superficie de ataque.
+The script generates a complete, ready‑to‑use report for penetration testing, OSINT investigations, or academic work.
 
 ---
 
-## 🚀 **Características**
+## 🚀 Features
 
-✔️ Totalmente automático  
-✔️ Acepta **cualquier dominio por parámetro**  
-✔️ Crea una carpeta independiente por dominio  
-✔️ Usa Recon-ng para brute-force + resolución  
-✔️ Extrae WHOIS, rangos ASN, MX, NS  
-✔️ Genera un informe final en texto plano  
-✔️ No requiere modificar el script para cada dominio  
+✔ Fully automated reconnaissance  
+✔ Works with **any domain**  
+✔ Intelligent WHOIS fallback (handles TLDs without WHOIS, like `.es`)  
+✔ Advanced subdomain enumeration using:  
+- **Subfinder**  
+- **Amass**  
+- **dnsrecon**  
+- **Fierce**  
+- **crt.sh**  
 
----
-
-## 📦 **Requisitos**
-
-Debes tener instalados:
-
-- `recon-ng`
-- `sqlite3`
-- `whois`
-- `dig` (dnsutils)
-- Linux (Kali recomendado)
-
-Instalación rápida:
-
-```bash
-sudo apt install recon-ng whois dnsutils sqlite3 -y
-```
+✔ Automatic installation of all required tools  
+✔ Subdomain resolution + IP extraction  
+✔ WHOIS + ASN mapping for each public IP  
+✔ MX and NS enumeration  
+✔ Clean folder structure per domain  
+✔ Final report in plain text  
 
 ---
 
-## 🧩 **Uso**
+## 📦 Automatic Installation
 
-Ejecuta el script indicando el dominio:
+The script automatically installs:
+
+- subfinder  
+- amass  
+- dnsrecon  
+- fierce  
+- jq  
+- whois  
+- dig (dnsutils)  
+- curl  
+- Go (if needed for Subfinder)
+
+No manual setup required.
+
+---
+
+## 🧩 Usage
+
+Make the script executable:
 
 ```bash
-./infra_recon.sh dominio.com
+chmod +x recon.sh
 ```
 
-Ejemplo:
+Run it with any domain:
 
 ```bash
-./infra_recon.sh ual.es
+./recon.sh domain.com
 ```
 
-Esto generará:
+Example:
+
+```bash
+./recon.sh ual.es
+```
+
+This will generate:
 
 ```
 ual.es/
- ├── auto_run.rc
- ├── INFORME_ual.es.txt
- ├── (workspace Recon-ng)
+ ├── REPORT_ual.es.txt
+ └── subdomains/
+      ├── subfinder.txt
+      ├── amass.txt
+      ├── dnsrecon.txt
+      ├── fierce.txt
+      ├── crtsh.txt
+      ├── all.txt
+      └── resolved.txt
 ```
 
 ---
 
-## 📁 **Estructura generada**
+## 📁 Report Structure
 
-```
-dominio.com/
- ├── auto_run.rc
- ├── INFORME_dominio.com.txt
- ├── workspace Recon-ng (interno)
-```
+### **PHASE 1 – WHOIS / RDAP**
+- Registrant  
+- Organization  
+- Registrar  
+- Name servers  
+- RDAP fallback for unsupported TLDs  
 
----
+### **PHASE 2 – Subdomain Enumeration**
+- Subdomains discovered  
+- Source tools  
+- Resolved IPs  
 
-## 📄 **Contenido del informe**
+### **PHASE 3 – ASN / Network Ranges**
+- WHOIS by IP  
+- NetRange / inetnum  
+- ASN (origin / originAS)  
+- Provider information  
 
-El informe incluye:
-
-### **FASE 1 – WHOIS**
-- Titular
-- Organización
-- Servidores DNS
-
-### **FASE 2 – Enumeración**
-- Hosts descubiertos
-- IPs asociadas
-
-### **FASE 3 – Rangos ASN**
-- Bloques de red
-- Proveedor
-- ASN
-
-### **FASE 4 – Clasificación**
-- Servidores MX
-- Servidores DNS
+### **PHASE 4 – MX / NS**
+- Mail servers  
+- Authoritative DNS servers  
 
 ---
 
-## 🛠️ **Personalización**
+## 🛠 Requirements
 
-Puedes modificar:
+Compatible with:
 
-- Nombre del workspace
-- Formato del informe
-- Módulos de Recon-ng
-- Filtros WHOIS
+- Kali Linux  
+- Debian / Ubuntu  
+- Any apt‑based distribution  
 
-Todo está claramente marcado en el script.
-
----
-
-## 📜 **Licencia**
-
-MIT License — úsalo, modifícalo y compártelo libremente.
+The script handles all dependencies automatically.
 
 ---
 
-## 🤝 **Autor**
+## 🎯 Purpose
+
+This tool is ideal for:
+
+- Cybersecurity students  
+- Pentesters  
+- OSINT analysts  
+- Red teamers  
+- Infrastructure mapping  
+- Academic assignments involving DNS footprinting  
+
+---
+
+## ⚠ Legal Disclaimer
+
+This script is intended **only for authorized security testing, research, and educational use**.  
+Running it against systems you do not own or have explicit permission to test may be illegal.
+
+---
+
+## 🤝 Author
 
 **David Pérez**  
-Auditoría de Infraestructura – OSINT – Ciberseguridad
+Cybersecurity · OSINT · Automation
 
 ---
